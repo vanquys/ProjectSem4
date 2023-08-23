@@ -24,7 +24,10 @@ public class AdminController {
 	  model.addAttribute("noti", notifications);
 	  return "notification"; }
 	 
-    
+	  @GetMapping("/create")
+	    public String showCourse() {
+	        return "adminCourses"; 
+	    }
 
     @GetMapping("/create")
     public String showCreateForm() {
