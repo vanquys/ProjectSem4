@@ -6,7 +6,6 @@
 <title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
  <link rel="stylesheet" th:href="@{/css/Course.css}"/>
- <script th:src="@{/js/AdCourses.js}"></script>
  
 </head>
 <body>
@@ -31,7 +30,7 @@
             <td th:text="${courses.teacher.fullName}">Teacher 1</td>
             <td><a th:href="${courses.linkOnline}">Link 1</a></td>
             <td th:text="${courses.description}">Description 1</td>
-            <td><a href="javascript:void(0);" class="edit-btn" data-course='${courses}'>Sửa</a></td>
+             <td><a th:href="@{/admin/editModel/{id}(id=${courses.id})}">Sửa</a></td>
             <td><a href="javascript:void(0);" class="delete-btn" th:onclick="deleteCourse(/*[[${courses.id}]]*/)">Xóa</a></td>
         </tr>
         
@@ -40,27 +39,7 @@
     </table>
 
 
-    <div id="editModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeEditModal()">&times;</span>
-        <h2>Edit Form</h2>
-        <form id="editForm">
-        	<label for="Id">Id:</label>
-            <input type="text" id="editId" name="id">
-            <label for="name">Name:</label>
-            <input type="text" id="editName" name="name">
-            <label for="price">Price:</label>
-            <input type="text" id="editPrice" name="price">
-            <label for="teacherId">Teacher ID:</label>
-            <input type="text" id="editTeacherId" name="teacherId">
-            <label for="linkOnline">Link Online:</label>
-            <input type="text" id="editLinkOnline" name="linkOnline">
-            <label for="description">Description:</label>
-            <input type="text" id="editDescription" name="description">
-            <input type="button" value="Save" onclick="saveEditForm()">
-        </form>
-    </div>
-</div>
+ 
 
     <div id="addModal" class="modal">
     <div class="modal-content">
