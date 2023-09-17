@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,7 +9,7 @@
     <!-- Fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- CSS -->
-    <link rel="stylesheet" href="..\css\adminStyle.css" />
+    <link th:href="@{/css/adminStyle.css}" rel="stylesheet" />
     <title>Students</title>
 </head>
 
@@ -25,11 +24,11 @@
             <div class="list-group list-group-flush my-3 sidenav">
                 <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active"><i
                         class="fas fa-tachometer-alt me-2"></i>Dashboard</a>
-                <a href="showStudents" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a href="ViewAdStudents" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fa-solid fa-graduation-cap"></i>Students</a>
-                <a href="showTeachers" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a href="ViewAdTeachers" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fa-solid fa-chalkboard-user"></i>Teachers</a>
-                <a href="showCourse" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
+                <a href="ViewAdCourses" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fa-solid fa-laptop-file"></i>Course</a>
                 <a href="showPermission" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
                         class="fa-solid fa-id-card-clip"></i>Permission</a>
@@ -117,59 +116,20 @@
                                 </tr>
                             </thead>
                             <tbody >
-                                <tr class="row-cover">
-                                    <th scope="row">1</th>
-                                    <td>123456</td>
-                                    <td>Nguyễn Thị Hải Yến</td>
-                                    <td>nguyenthihaiyen@gmail.com</td>
-                                    <td>0905123456</td>
-                                    <td>22/05/2023</td>
-                                    <td>True</td>
+                                <tr class="row-cover" th:each="students : ${ListStudents}">
+                                    <th scope="row"  th:text="${students.id}">1</th>
+                                    <td th:text="${students.password}">123456</td>
+                                    <td th:text="${students.fullName}">Nguyễn Thị Hải Yến</td>
+                                    <td th:text="${students.email}">nguyenthihaiyen@gmail.com</td>
+                                    <td th:text="${students.phone}">0905123456</td>
+                                    <td th:text="${students.createDate}">22/05/2023</td>
+                                    <td th:text="${students.Enable}">True</td>
                                     <td>
                                         <i class="fa-solid fa-pen btn-edit" data-bs-toggle="modal" data-bs-target="#student-teacher-editModal"></i>
                                         <i class="fa-solid fa-trash btn-del" data-bs-toggle="modal" data-bs-target="#deleteModal"></i>
                                     </td>
                                 </tr>
-                                <tr class="row-cover">
-                                    <th scope="row">1</th>
-                                    <td>123456</td>
-                                    <td>Nguyễn Thị Hải Yến</td>
-                                    <td>nguyenthihaiyen@gmail.com</td>
-                                    <td>0905123456</td>
-                                    <td>22/05/2023</td>
-                                    <td>True</td>
-                                    <td>
-                                        <i class="fa-solid fa-pen btn-edit" data-bs-toggle="modal" data-bs-target="#student-teacher-editModal"></i>
-                                        <i class="fa-solid fa-trash btn-del" data-bs-toggle="modal" data-bs-target="#deleteModal"></i>
-                                    </td>
-                                </tr>
-                                <tr class="row-cover">
-                                    <th scope="row">1</th>
-                                    <td>123456</td>
-                                    <td>Nguyễn Thị Hải Yến</td>
-                                    <td>nguyenthihaiyen@gmail.com</td>
-                                    <td>0905123456</td>
-                                    <td>22/05/2023</td>
-                                    <td>True</td>
-                                    <td>
-                                        <i class="fa-solid fa-pen btn-edit" data-bs-toggle="modal" data-bs-target="#student-teacher-editModal"></i>
-                                        <i class="fa-solid fa-trash btn-del" data-bs-toggle="modal" data-bs-target="#deleteModal"></i>
-                                    </td>
-                                </tr>
-                                <tr class="row-cover">
-                                    <th scope="row">1</th>
-                                    <td>123456</td>
-                                    <td>Nguyễn Thị Hải Yến</td>
-                                    <td>nguyenthihaiyen@gmail.com</td>
-                                    <td>0905123456</td>
-                                    <td>22/05/2023</td>
-                                    <td>True</td>
-                                    <td>
-                                        <i class="fa-solid fa-pen btn-edit" data-bs-toggle="modal" data-bs-target="#student-teacher-editModal"></i>
-                                        <i class="fa-solid fa-trash btn-del" data-bs-toggle="modal" data-bs-target="#deleteModal"></i>
-                                    </td>
-                                </tr>
-                                
+                               
                             </tbody>
                         </table>
                     </div>
@@ -315,7 +275,7 @@
     <!-- JavaScript Bootstrap5 -->  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- JS -->
-    <script src="..\js\adminCustom.js"></script>
+    <script type="text/javascript" th:src="@{/js/adminCustom.js}"></script>
 </body>
 
 </html>
