@@ -10,13 +10,13 @@ public class Students {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String fassword;
+    private String password;
 
-    @Column(name = "fullName")
+    @Column(name = "full_name")
     private String fullName;
 
     private String email;
-    private long phone;
+    private String phone;
 
     @Column(name = "create_date")
     private Date createDate;
@@ -31,12 +31,12 @@ public class Students {
 		this.id = id;
 	}
 
-	public String getFassword() {
-		return fassword;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setFassword(String fassword) {
-		this.fassword = fassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getFullName() {
@@ -55,11 +55,11 @@ public class Students {
 		this.email = email;
 	}
 
-	public long getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(long phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
@@ -79,11 +79,11 @@ public class Students {
 		Enable = enable;
 	}
 
-	public Students(int id, String fassword, String fullName, String email, long phone, Date createDate,
+	public Students(int id, String password, String fullName, String email, String phone, Date createDate,
 			boolean enable) {
 		super();
 		this.id = id;
-		this.fassword = fassword;
+		this.password = password;
 		this.fullName = fullName;
 		this.email = email;
 		this.phone = phone;

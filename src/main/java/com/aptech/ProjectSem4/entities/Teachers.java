@@ -17,14 +17,14 @@ public class Teachers {
     private String fullName;
 
     private String email;
-    private long phone;
+    private String phone;
 
     @Column(name = "create_date")
     private Date createDate;
 
     private boolean Enable;
 
-	public Teachers(int id, String password, String fullName, String email, long phone, Date createDate,
+	public Teachers(int id, String password, String fullName, String email, String phone, Date createDate,
 			boolean enable) {
 		super();
 		this.id = id;
@@ -72,11 +72,11 @@ public class Teachers {
 		this.email = email;
 	}
 
-	public long getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(long phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
