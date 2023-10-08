@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,13 +42,15 @@ public class AccountController {
 		long millis=System.currentTimeMillis();  
         java.sql.Date createDate =new java.sql.Date(millis);   
 		try {
+		    
 			student.setCreateDate(createDate);
-			student.setPassword(BCrypt.hashpw(student.getPassword(), BCrypt.gensalt()));
 			studentRepository.save(student);
+			// thanh cong
 			return "index";
 			
 		}catch (Exception e) {
-			return "studentRegister";
+			// that bai 
+			return "index";
 		}
 	}
 	@PostMapping("/teacherRegister")
@@ -59,8 +60,8 @@ public class AccountController {
 		try {
 		    
 			teacher.setCreateDate(createDate);
-			teacher.setPassword(BCrypt.hashpw(teacher.getPassword(), BCrypt.gensalt()));
 			teacherRepository.save(teacher);
+			// thanh cong
 			return "index";
 			
 		}catch (Exception e) {
@@ -72,8 +73,6 @@ public class AccountController {
 	}
 	
 	
-	
-	
 	@RequestMapping("login")
 	public String LoginView() {
 		return "login";
@@ -81,30 +80,28 @@ public class AccountController {
 	
 	@PostMapping("login")
 	public String Login(LoginModel user) {
-		String hasPass =  BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-		if(user.getRole().toString().equals("Admin") ) {
+		
+		if(user.getRole().toString().equals("admin") ) {
+			Admin loged = adminRepository.findByUserNameAndPassword(user.getUserName(), user.getPassword());
+			if(loged != null ) {
+				return "index";
+			}
+			else {
+				return "login";
+			}
+		}else if(user.getRole() == "teacher") {
 			
-			Admin loged = adminRepository.findByUserName(user.getUserName());
-			 if (loged != null && BCrypt.checkpw(user.getPassword(), loged.getPassword())) {
-		            return "index";
-		        } else {
-		            return "login";
-		        }
-		}else if(user.getRole() == "Teacher") {
-			
-			  Teachers loged = teacherRepository.findByPhoneOrEmail(user.getUserName(), hasPass);
-			  if (loged != null && BCrypt.checkpw(user.getPassword(), loged.getPassword())) {
-		            return "index";
-		        } else {
-		            return "login";
-		        }
+			  Teachers logedPhone = teacherRepository.findByPhoneAndPassword(user.getUserName(),user.getPassword());
+			  if(logedPhone != null ) { return "index"; } 
+			  Teachers logedEmail = teacherRepository.findByEmailAndPassword(user.getUserName(),user.getPassword());
+			  if(logedEmail != null ) { return "index"; } 
+			  return "login";
 		}else {
-			Students loged = studentRepository.findByPhoneOrEmail(user.getUserName(), hasPass);
-			if (loged != null && BCrypt.checkpw(user.getPassword(), loged.getPassword())) {
-	            return "index";
-	        } else {
-	            return "login";
-	        }
+			Students logedPhone = studentRepository.findByPhoneAndPassword(user.getUserName(), user.getPassword());
+			if(logedPhone != null ) { return "index"; }
+			Students logedEmail = studentRepository.findByEmailAndPassword(user.getUserName(), user.getPassword());
+			if(logedEmail != null ) { return "index"; }
+				return "login";
 		}
 		
 		

@@ -39,7 +39,7 @@ public class AdTeacherController {
 		}
 	}
 
-	@GetMapping("/edit")
+	@PostMapping("/edit")
 	@ResponseBody
 	public String processEditForm(Teachers updatedTeacher) {
 		teacherRepository.save(updatedTeacher);

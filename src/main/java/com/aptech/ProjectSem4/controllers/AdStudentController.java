@@ -43,7 +43,7 @@ public class AdStudentController {
 		return "Success";
 	}
 
-	@GetMapping("/add")
+	@PostMapping("/add")
 	@ResponseBody
 	public String saveAddForm(Students newCourse) {
 		studentRepository.save(newCourse);

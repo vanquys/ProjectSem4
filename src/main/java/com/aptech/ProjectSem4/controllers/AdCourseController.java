@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.aptech.ProjectSem4.entities.Courses;
 import com.aptech.ProjectSem4.reponsitory.CourseRepository;
+import com.aptech.ProjectSem4.reponsitory.TeacherRepository;
 
 
 @Controller
@@ -20,10 +21,13 @@ import com.aptech.ProjectSem4.reponsitory.CourseRepository;
 public class AdCourseController {
 	@Autowired
 	private CourseRepository courseRepository;
+	@Autowired
+	private TeacherRepository teacherReponsitory;
 
 	@GetMapping("/ViewAdCourses")
 	public String ViewAdCourses(Model model) {
 		model.addAttribute("ListCourses", courseRepository.findAll());
+		model.addAttribute("teachers" , teacherReponsitory.findAll());
 		return "course";
 	}
 
@@ -39,11 +43,11 @@ public class AdCourseController {
 		}
 	}
 
-	@GetMapping("/edit")
+	@PostMapping("/edit")
 	@ResponseBody
 	public String processEditForm(Courses updatedCourse) {
 		courseRepository.save(updatedCourse);
-		return "Success";
+		return "course";
 	}
 
 //	// thêm khóa học
@@ -51,7 +55,7 @@ public class AdCourseController {
 	@ResponseBody
 	public String saveAddForm(Courses newCourse) {
 		courseRepository.save(newCourse);
-		return "Success";
+		return "course";
 	}
 	
 	
