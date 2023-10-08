@@ -17,6 +17,9 @@
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!-- CSS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <link th:href="@{/css/adminStyle.css}" rel="stylesheet" />
 <title>Teachers</title>
 </head>
@@ -162,26 +165,28 @@
 
 
 	<!-- MODAL  -->
-	<!-- Bất đầu Student Edit Modal -->
-	<div class="modal" id="student-teacher-editModal">
+
+	<!-- Bất đầu teacher Modal -->
+	<div class="modal fade" id="teacher-editModal">
 		<div class="modal-dialog modal-xl">
 			<div class="modal-content">
 				<!-- Modal Header -->
 				<div class="modal-header">
-					<h4 class="modal-title">Update Information</h4>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					<h4 class="modal-title">Update teacher</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						>&times;</button>
 				</div>
-
 				<!-- Modal body -->
 				<div class="modal-body">
-					<div class="row my-5" id="student">
+					<div class="row my-5" id="teacher">
+						<h3 class="fs-4 mb-3">teacher</h3>
 						<div class="col">
 							<table class="table bg-white rounded shadow-sm  table-hover">
 								<thead>
 									<tr>
-										<th scope="col">Password</th>
 										<th scope="col">Full Name</th>
-										<th scope="col">Email</th>
+										<th scope="col">Password</th>
+										<th scope="col">email</th>
 										<th scope="col">Phone</th>
 										<th scope="col">Create Date</th>
 										<th scope="col">Enable</th>
@@ -189,12 +194,17 @@
 								</thead>
 								<tbody>
 									<tr>
-										<td>123456</td>
-										<td>Nguyễn Thị Hải Yến</td>
-										<td>nguyenthihaiyen@gmail.com</td>
-										<td>0905123456</td>
-										<td>22/05/2023</td>
-										<td>True</td>
+										<form id="editModel" action="/admin/teachers/edit" method="post">
+											<input type="text" id="editId" name="id" hidden>
+											<td><input type="text" id="editFullName" name="fullname"></td>
+											<td><input type="text" id="editPassword" name="password"></td>
+											<td><input type="text" id="editEmail" name="email"></td>
+											
+											<td><input type="text" id="editPhone" name="linkPhone"></td>
+											<td><input type="text" id="editCreateDate" name="createdate"></td>
+											<td><input type="text" id="editEnable" name="enable"></td>
+											<button class="btn btn-primary" type=submit> update</button>
+										</form>
 									</tr>
 								</tbody>
 							</table>
@@ -202,68 +212,9 @@
 					</div>
 				</div>
 
-				<!-- Modal footer -->
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger"
-						data-bs-dismiss="modal">Update</button>
-				</div>
 			</div>
 		</div>
 	</div>
-	<!-- Kết thúc Student Edit Modal -->
-
-	<!-- Bất đầu Course Modal -->
-	<div class="modal" id="course-editModal">
-		<div class="modal-dialog modal-xl">
-			<div class="modal-content">
-				<!-- Modal Header -->
-				<div class="modal-header">
-					<h4 class="modal-title">Update Course</h4>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-				</div>
-
-				<!-- Modal body -->
-				<div class="modal-body">
-					<div class="row my-5" id="course">
-						<h3 class="fs-4 mb-3">Course</h3>
-						<div class="col">
-							<table class="table bg-white rounded shadow-sm  table-hover">
-								<thead>
-									<tr>
-										<th scope="col">Name</th>
-										<th scope="col">Description</th>
-										<th scope="col">Price</th>
-										<th scope="col">Teacher ID</th>
-										<th scope="col">Link Online</th>
-										<th scope="col">Create Date</th>
-										<th scope="col">Create By ID</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Java Enterprice</td>
-										<td>Môn này dạy java module</td>
-										<td>15.000.000</td>
-										<td>1</td>
-										<td>#</td>
-										<td>22/05/2023</td>
-										<td>ID01234</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-
-				<!-- Modal footer -->
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger"
-						data-bs-dismiss="modal">Update</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Kết thúc Course Modal  -->
 
 	<!-- Bất đầu Delete Modal   -->
 	<div class="modal" id="deleteModal">
@@ -289,32 +240,30 @@
 			</div>
 		</div>
 	</div>
-	<!-- Kết thúc Delete Modal   -->
+	
 
-
-	<!-- JavaScript Bootstrap5 -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js">
-		function deleteStudent(studentId) {
-			if (confirm("Are you sure you want to delete this student?")) {
-				$.ajax({
-					type : "DELETE",
-					url : "/delete/" + studentId,
-					success : function(response) {
-						// Xóa hàng tương ứng từ giao diện
-						$('#student-' + studentId).remove();
-						alert("Student deleted successfully!");
-					},
-					error : function(error) {
-						console.log(error);
-						alert("An error occurred while deleting the student.");
-					}
-				});
-			}
-		}
-	</script>
 	<!-- JS -->
-	<script type="text/javascript" th:src="@{/js/adminCustom.js}"></script>
 </body>
-
+	<script>
+	function openEditModal(id) {
+		$.ajax({
+			type : "GET",
+			contentType : "application/json",
+			url : "/admin/teachers/editModel?id=" + id,
+			success : function(response) {
+				var teacher = response;
+				$('#editId').val(teacher.id);
+				$('#editFullName').val(teacher.fullname);
+				$('#editPassword').val(teacher.password);
+				$('#editEmail').val(teacher.email);
+				$('#editCreateDate').val(teacher.createdate);
+				$('#editEnable').val(teacher.enable);
+				$('#editModal').show();
+			},
+			error : function(error) {
+				console.log(error);
+			}
+		});
+	}
+	</script>
 </html>

@@ -17,6 +17,9 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <!-- CSS -->
 
 <link th:href="@{/css/adminStyle.css}" rel="stylesheet" />
@@ -24,6 +27,9 @@
 </head>
 
 <body>
+
+
+
 	<div class="d-flex" id="wrapper">
 		<!-- Bất đầu Sidebar -->
 		<div class="bg-white" id="sidebar-wrapper">
@@ -43,7 +49,8 @@
 					class="fa-solid fa-chalkboard-user"></i>Teachers</a> <a
 					href="/admin/course/ViewAdCourses"
 					class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
-					class="fa-solid fa-laptop-file"></i>Course</a> <a href="/admin/permissions/showPermission"
+					class="fa-solid fa-laptop-file"></i>Course</a> <a
+					href="/admin/permissions/showPermission"
 					class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
 					class="fa-solid fa-id-card-clip"></i>Permission</a> <a href="#calendar"
 					class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i
@@ -152,8 +159,10 @@
 									</td>
 
 									<td th:text="${courses.linkOnline}"></td>
-									<td><a href="javascript:void(0);" class="edit-btn"
-										data-id="${courses.id}" th:onclick="openEditModal(event)">Edit</a></td>
+									<td><button data-bs-toggle="modal"
+											data-bs-target="#course-editModal" href="javascript:void(0);"
+											class="btn btn-primary"
+											th:onclick="|openEditModal('${courses.id}')|">Edit</button></td>
 									<td><i class="fa-solid fa-trash btn-del"
 										data-bs-toggle="modal" data-bs-target="#deleteModal"></i></td>
 								</tr>
@@ -166,14 +175,15 @@
 		</div>
 	</div>
 
-	<div class="modal" id="course-editModal">
+
+
+	<div class="modal fade" id="course-editModal">
 		<div class="modal-dialog modal-xl">
 			<div class="modal-content">
 				<!-- Modal Header -->
 				<div class="modal-header">
 					<h4 class="modal-title">Update Course</h4>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						onclick="closeEditModal()">&times;</button>
+					<button type="button" class="btn-close" data-bs-dismiss="modal">&times;</button>
 				</div>
 				<!-- Modal body -->
 				<div class="modal-body">
@@ -186,28 +196,27 @@
 										<th scope="col">Name</th>
 										<th scope="col">Description</th>
 										<th scope="col">Price</th>
-										<th scope="col">Teacher ID</th>
+										<th scope="col">Teacher</th>
 										<th scope="col">Link Online</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
-										<form id="editForm" action="/admin/course/editModel" method="get">
+										<form id="editModel" action="/admin/course/edit" method="post">
+											<input type="text" id="editId" name="id" hidden>
 											<td><input type="text" id="editName" name="name"></td>
 											<td><input type="text" id="editDescription"
 												name="description"></td>
 											<td><input type="text" id="editPrice" name="price"></td>
-											<select id="teacher" name="teacher">
-												<option value="">Select Teacher</option>
-
-												<th:block th:each="teacher : ${teachers}">
-													<option th:value="${teacher.id}"
-														th:text="${teacher.fullName}"></option>
-												</th:block>
-											</select>
-											<td><input type="text" id="editLinkOnline"
-												name="linkonline"></td>
-											<button type="submit" class="btn btn-primary">update</button>
+											<td><select id="EditTeacherId" name="teacher">
+													<th:block th:each="teacher : ${teachers}">
+														<option th:value="${teacher.id}"
+															th:text="${teacher.fullName}"></option>
+													</th:block>
+											</select></td>
+										<td><input type="text" id="editLinkOnline"
+											name="linkOnline"></td>
+										<button class="btn btn-primary" type=submit> update</button>
 										</form>
 									</tr>
 								</tbody>
@@ -266,7 +275,7 @@
 							<label for="addPrice" class="form-label">Price:</label> <input
 								type="text" class="form-control" id="addPrice" name="price">
 						</div>
-						<select id="teacher" name="teacher">
+						<select id="editTeacherId" name="teacher">
 							<option value="">Select Teacher</option>
 
 							<th:block th:each="teacher : ${teachers}">
@@ -298,38 +307,36 @@
 
 
 
-</body>
-<!-- JavaScript Bootstrap5 -->
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js">
-function openEditModal() {
-	var course = event.getAttribute("data-id");
-	if(course){
-	alert("ok......");
-	}
- /*        $.ajax({
-            type: "POST",
-            url: "/admin/course/editModel?id=" + courseId,
-            success: function (response) {
-                var course = response;
-                $('#editId').val(course.id);
-                $('#editName').val(course.name);
-                $('#editPrice').val(course.price);
-                $('#teacher').val(course.teacher.id);
-                $('#editLinkOnline').val(course.linkOnline);
-                $('#editDescription').val(course.description);
 
-                $('#editModal').show();
-            },
-            error: function (error) {
-                console.log(error);
-            }
-        }); */
-}
+
+</body>
+
+<!-- JavaScript Bootstrap5 -->
+
+
+<script>
+	function openEditModal(id) {
+		$.ajax({
+			type : "GET",
+			contentType : "application/json",
+			url : "/admin/course/editModel?id=" + id,
+			success : function(response) {
+				var course = response;
+				$('#editId').val(course.id);
+				$('#editName').val(course.name);
+				$('#editPrice').val(course.price);
+				$('#editTeacherId').val(course.teacher.id);
+				$('#editLinkOnline').val(course.linkOnline);
+				$('#editDescription').val(course.description);
+				$('#editModal').show();
+			},
+			error : function(error) {
+				console.log(error);
+			}
+		});
+	}
 </script>
 <!-- JS -->
-<script type="text/javascript" th:src="@{/js/adminCustom.js}"></script>
-<script type="text/javascript" th:src="@{/js/adCourse.js}"></script>
 
 
 </html>
