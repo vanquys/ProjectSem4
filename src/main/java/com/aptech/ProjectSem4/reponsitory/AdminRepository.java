@@ -7,5 +7,5 @@ import com.aptech.ProjectSem4.entities.Admin;
 
 
 public interface AdminRepository extends CrudRepository<Admin, Integer> {
-	Admin findByUserNameAndPassword(String UserName, String Password);
+	Admin findByUserName(String UserName);
 }
