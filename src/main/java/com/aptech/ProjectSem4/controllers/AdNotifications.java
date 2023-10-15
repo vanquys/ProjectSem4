@@ -24,8 +24,8 @@ public class AdNotifications {
 
 	@GetMapping("/ViewAdNotifi")
 	public String ViewAdNotifi(Model model) {
-		model.addAttribute("ListCourses", notificationRepository.findAll());
-		return "Notifications";
+		model.addAttribute("ListNoti", notificationRepository.findAll());
+		return "adNotification";
 	}
 
 	@GetMapping("/editModel")
@@ -39,7 +39,7 @@ public class AdNotifications {
 		}
 	}
 
-	@GetMapping("/edit")
+	@PostMapping("/edit")
 	@ResponseBody
 	public String processEditForm(Notifications updatednoti) {
 		notificationRepository.save(updatednoti);
