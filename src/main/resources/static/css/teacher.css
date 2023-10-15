@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,300;0,400;0,800;0,900;1,700&display=swap');
+:root {
+    --main-text-back-color: #2b2c40;
+    --main-text-color: #f05123;
+    /* --second-text-color: #a3a4cc; */
+    --second-text-color: #c1efde;
+    --font-color:#a3a4cc;
+    --font-light:#cbcbe2;
+    --white:#fff;
+    --shadow:0 0 0.375rem 0.25rem rgb(0 0 0 / 15%);;
+  }
+
+body{
+    font-family: 'Urbanist', sans-serif;
+    margin: 0;
+    padding: 0;  
+    overflow-x: hidden;  
+}
+
+body .btn{
+    border: none;
+    color: var(--second-text-color);
+    background-color: var(--main-text-color);
+}
+
+body .btn:hover{
+    color: var(--main-text-color);
+    background-color: var(--second-text-color);
+}
+
+.main-text{
+    color: var(--main-text-color) !important;
+}
+
+.main-text-back{
+    color: var(--main-text-back-color);
+}
+
+.second-text-color{
+    color: var(--second-text-color);
+}
+
+.title-main{
+    color: #242424;
+    font-weight: 900;
+}
+
+
+
+
+/* Bất đầu CSS header */
+header{
+    box-shadow: none;
+}
+
+/* Kết thúc CSS header */
+
+/* Bất đầu CSS content */
+.container-fluid.row.App_WithSideBar.Content {
+    --bs-gutter-x: 0;
+
+}
+
+.d-flex.flex-column.flex-shrink-0 {
+    position: sticky;
+    left: 0;
+    top: 74px;
+    z-index: 8;
+}
+
+ul.nav.nav-pills.nav-flush.flex-column.mb-auto.text-center {
+    margin-top: 20px;
+}
+
+.App_WithSideBar .Side_Bar.col-1 {
+    padding: 0 22px 0 22px;
+}
+
+.App_WithSideBar a.nav-link.border-bottom {
+    margin-bottom: 10px;
+    border-radius: 16px;
+    padding: 11px;
+}
+
+.App_WithSideBar a.nav-link.border-bottom:focus {
+    border-radius: 16px;
+    background-color: var(--second-text-color);
+    transition: all .8s ease-in;
+}
+
+.App_WithSideBar .Side_Bar span {
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: 6px;
+    text-decoration: none;
+    color: var(--main-text-back-color);    
+}
+
+.App_WithSideBar .App button.btn.btn-send-task {
+    margin-right: 3px;
+}
+
+.App_WithSideBar .col-11.App{
+    margin-top: 20px;
+    padding: 0 5px 0 5px;
+}
+
+.App_WithSideBar .container-fluid.table-responsive{
+    margin-bottom: 30px;
+    padding-top: 5px;
+}
+
+
+/* Kết thúc CSS content */
+
+
+/* Bất đầu CSS footer */
+
+/* Kết thúc CSS footer */
+
+/* RESPONSIVE */
+
+@media only screen and (max-width: 1024px) {
+    
+}
+
+@media only screen and (max-width: 990px) {
+    
+
+}
+
+@media only screen and (max-width: 660px) {
+   #Content{
+    --bs-gutter-x: 0;
+   } 
+   div#Content{
+    display: inline-block !important;
+   }
+   .Content_Left.col-8{
+    width: 100%;
+    padding: 0;
+   }
+   .Content_Right.col-4{
+    margin-top: 30px;
+    width: 100%;
+    padding: 0;
+   }
+   
+}
+

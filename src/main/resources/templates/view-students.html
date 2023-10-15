@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/student.css}">
+	<!-- JS -->
+	<!--<link rel="stylesheet" type="text/css" th:href="@{}">-->
+	<!-- CSS Bootstrap5 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<!-- Fontawesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<title>view-stuednts</title>
+</head>
+
+<body>
+	
+	<!-- Bất đầu header -->
+	<header header class="py-3 mb-3 border-bottom sticky-top">
+		<div class="container-fluid d-grid gap-3 align-items-center d-flex justify-content-between"
+			style="grid-template-columns: 1fr 2fr;">
+			<div class="mobile-toggle d-lg-none">
+				<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+					data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+					<i class="fa-solid fa-bars"></i>
+				</button>
+			</div>
+			<div class="Navbar_logo d-flex align-items-center">
+				<a href="#"> <i class="fa-solid fa-book-atlas Main_Logo"></i>
+					<!-- <img src="/image/logo-main.jpg" alt="" alt="mdo" width="32" height="32" class="rounded-circle"> -->
+				</a>
+				<h5 class="m-0 main-text text-slogan">Học để Phát triển bản
+					thân</h5>
+			</div>
+			<div class="Navbar_body">
+				<form class="w-100 me-3">
+					<input type="search" class="form-control search_heading rounded-pill" placeholder="Search..."
+						aria-label="Search">
+				</form>
+			</div>
+			<div class="Navbar_actions d-flex">
+				<div class="dropdown align-items-center p-0">
+					<a href="#" class="link-dark main-text text-decoration-none" id="dropdownNavLink"
+						data-bs-toggle="dropdown" aria-expanded="false"> Khóa học của tôi </a>
+					<ul class="container-lg dropdown-menu text-small shadow" aria-labelledby="dropdownNavLink">
+						<div class="MyCourses_header d-flex justify-content-between">
+							<a href="" class="MyCourses_view text-decoration-none">Xem
+								tất cả</a>
+						</div>
+						<div>
+							<a class="dropdown-item" href="#">Khóa học 1
+								áđâsđâsđâsđâsđâsđâsd</a>
+						</div>
+						<div>
+							<a class="dropdown-item" href="#">Khóa học 2</a>
+						</div>
+						<div>
+							<a class="dropdown-item" href="#">khóa học 3</a>
+						</div>
+					</ul>
+				</div>
+				<div class="d-flex align-items-center dropdown">
+					<a href="#" data-bs-toggle="dropdown" aria-expanded="false"> <i
+							class="fa-solid fa-bell main-text m-2"></i>
+					</a>
+					<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownNavLink">
+						<li><a class="dropdown-item" href="#">Thông báo 1</a></li>
+						<li><a class="dropdown-item" href="#">Thông báo 2</a></li>
+						<li><a class="dropdown-item" href="#">Thông báo 3</a></li>
+					</ul>
+				</div>
+				<div class="flex-shrink-0 dropdown">
+					<a href="#" class="d-block link-dark text-decoration-none" id="dropdownUser2"
+						data-bs-toggle="dropdown" aria-expanded="false">
+						<img src="/image/avatar-student.png" alt="mdo" width="32" height="32" class="rounded-circle">
+					</a>
+					<ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+						<li><a class="dropdown-item" href="#"></a></li>
+						<li><a class="dropdown-item" href="#">Settings</a></li>
+						<li><a class="dropdown-item" href="#">Profile</a></li>
+						<li>
+							<hr class="dropdown-divider">
+						</li>
+						<li><a class="dropdown-item" href="#">Sign out</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- Bất đầu modal sidebar -->
+		<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+			aria-labelledby="offcanvasExampleLabel">
+			<div class="offcanvas-header">
+				<a href="#"> <i class="fa-solid fa-book-atlas Main_Logo"></i>
+					<!-- <img src="/image/logo-main.jpg" alt="" alt="mdo" width="32" height="32" class="rounded-circle"> -->
+				</a>
+				<h5 class="m-0 main-text text-slogan">Học để Phát triển bản
+					thân</h5>
+				<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+					aria-label="Close"></button>
+			</div>
+			<div class="offcanvas-body ">
+				<div class="offcanvas-line">
+					<i class="fa-solid fa-house"></i><a href="#" class="text-decoration-none main-text-back">Trang
+						Chủ</a>
+				</div>
+				<div class="offcanvas-line">
+					<i class="fa-regular fa-folder-open"></i><a href="#"
+						class="text-decoration-none main-text-back">Khóa Học Mới</a>
+				</div>
+				<div class="offcanvas-line">
+					<i class="fa-solid fa-chalkboard-user"></i><a href="#"
+						class="text-decoration-none main-text-back">Khóa Học Của Tôi</a>
+				</div>
+				<div class="offcanvas-line">
+					<i class="fa-solid fa-list-check"></i><a href="#" class="text-decoration-none main-text-back">Nhiệm
+						Vụ</a>
+				</div>
+				<div class="offcanvas-line">
+					<i class="fa-solid fa-info"></i><a href="#" class="text-decoration-none main-text-back">Thông
+						Báo</a>
+				</div>
+			</div>
+			<div class="offcanvas-footer ">
+				<div class="offcanvas-line">
+					<i class="fa-solid fa-gear"></i><a href="#" class="text-decoration-none main-text-back">Cài đặt</a>
+				</div>
+				<div class="offcanvas-line">
+					<i class="fa-solid fa-right-from-bracket"></i><a href="/account/logout"
+						class="text-decoration-none main-text-back">Đăng Xuất</a>
+				</div>
+			</div>
+		</div>
+		<!-- Kết thúc modal sidebar -->
+	</header>
+	<!-- Kết thúc header -->
+
+	<!-- Bất đầu body -->
+	<div class="container-fluid" id="body">
+		<!-- Bất đầu Khóa Học Mới -->
+		<!-- Bất đầu carousel -->
+		<div id="carouselExampleCaptions" class="carousel slide slide_show" data-bs-ride="carousel">
+			<div class="carousel-indicators">
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+					aria-current="true" aria-label="Slide 1"></button>
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+					aria-label="Slide 2"></button>
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+					aria-label="Slide 3"></button>
+			</div>
+			<div class="carousel-inner">
+				<!-- Bất đầu ứng dụng thymeleaf vào carousel -->
+				<!--<div th:each="item, iterStat : ${items}"
+					th:class="${iterStat.first} ? 'carousel-item active' : 'carousel-item'">
+					<img class="d-block w-100" th:src="${item.image}" alt="Image">
+					<div class="carousel-caption d-none d-md-block">
+						<h5 th:text="${item.title}">Title</h5>
+						<p th:text="${item.description}">Description</p>
+					</div>
+				</div>-->
+				<!-- Kết thúc ứng dụng thymeleaf vào carousel -->
+				<div class="carousel-item active">
+					<img src="/image/slide-show1.jpg" class="d-block w-100" alt="...">
+					<div class="carousel-caption d-none d-md-block">
+						<h5>New Course 1</h5>
+						<p>Some representative placeholder content for the first
+							slide.</p>
+					</div>
+					<div class="position-absolute">
+						<h2 class="title-main">
+							<span>
+								 Khóa Học 
+								 <span class="title_new">Mới</span> 
+							</span>
+						</h2>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img src="/image/slide-show2.jpg" class="d-block w-100" alt="...">
+					<div class="carousel-caption d-none d-md-block">
+						<h5>New Course 2</h5>
+						<p>Some representative placeholder content for the second
+							slide.</p>
+					</div>
+					<div class="position-absolute">
+						<h2 class="title-main">
+							<span>
+								 Khóa Học  
+								 <span class="title_new">Mới</span>
+							</span>
+						</h2>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img src="/image/slide-show3.jpg" class="d-block w-100" alt="...">
+					<div class="carousel-caption d-none d-md-block">
+						<h5>New Course 3</h5>
+						<p>Some representative placeholder content for the third
+							slide.</p>
+					</div>
+					<div class="position-absolute">
+						<h2 class="title-main">
+							<span>
+								 Khóa Học  
+								 <span class="title_new">Mới</span>
+							</span>
+						</h2>
+					</div>
+				</div>
+
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+				data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+				data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+		<!-- Kết thúc carousel -->
+		<!-- Kết thúc Khóa Học Mới -->
+
+
+		<!-- Bất đầu content -->
+		<div class="container-fluid d-flex row Content" id="Content">
+			<div class="Content_Left col-8">
+				<!-- Bất đầu Khóa Học Của Tôi-->
+				<div class="container Buy_Courses" id="My_Courses">
+					<h2 class="title-main">
+						<span> Khóa Học Của Tôi </span>
+					</h2>
+					<div class="row">
+						<div th:each="studentCourse : ${listCourse}">
+					        <div class="card col-lg-4 col-md-6">
+					            <img src="/image/thumbnail-buy-courses4.jpg" class="card-img-top Image_Thumbnail"
+					                alt="Card image cap">
+					            <div class="card-body">
+					                <h5>
+					                    <a href="#" class="card-title main-text-back text-decoration-none" th:text="${studentCourse.courseName}"></a>
+					                </h5>
+					                <p class="card-text main-text" th:text="${studentCourse.teacherName}"></p>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+				</div>
+				<!-- Kết thúc Khóa Học Của Tôi-->
+				<!-- Bất đầu Xem Nhiệm Vụ và Nộp Bài Tập -->
+				<div class="container Tasks" id="Tasks">
+					<table class="table table-striped table-responsive-md">
+						<h2 class="title-main">
+							<span>
+								 Nhiệm Vụ 
+							<span class="title_new">Mới</span>
+							</span>
+						</h2>
+						<thead>
+							<tr>
+								<th scope="col-sm">Create By</th>
+								<th class="col-sm" scope="col">Title</th>
+								<th scope="col-sm">Description</th>
+								<th scope="col-sm">Create Date</th>
+								<th scope="col-sm">Dealine</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+						<tr th:each="task : ${studentTasks}">
+						    <td th:text="${task.createdBy}"></td>
+						    <td th:text="${task.title}"></td>
+						    <td th:text="${task.description}"></td>
+						    <td th:text="${task.createDate}"></td>
+						    <td th:text="${task.dueDate}"></td>
+						    <td class="d-flex p-0">
+						        <button type="button" class="btn btn-send-task"
+						                data-bs-toggle="modal" data-bs-target="#taskModal">
+						            <i class="fa-solid fa-paper-plane"></i>
+						        </button>
+						    </td>
+						</tr>
+						
+						</tbody>
+					</table>
+					<!-- Bất đầu Modal Nộp Bài -->
+					<div class="modal" id="taskModal">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<!-- Tiêu đề modal -->
+								<div class="modal-header">
+									<h4 class="modal-title">Nộp Bài Tập</h4>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+								</div>
+								<!-- Nội dung modal -->
+								<div class="modal-body">
+									<form action="#" method="POST">
+										<input type="text" class="form-control mb-3" name="studentId"
+											placeholder="ID sinh viên">
+										<input type="text" class="form-control mb-3" name="taskId"
+											placeholder="ID nhiệm vụ">
+										<input type="file" class="form-control mb-3" name="assignmentFile"
+											placeholder="File bài tập">
+									</form>
+								</div>
+								<!-- Chân trang modal -->
+								<div class="modal-footer">
+									<button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Gửi</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Kết thúc Modal Nộp Bài -->
+				</div>
+				<!-- Kết thúc Xem Nhiệm Vụ và Nộp Bài Tập -->
+			</div>
+			<div class="Content_Right col-4">
+				<!-- Bất đầu Thông Báo Mới -->
+				<div class="container" id="Notification">
+					<h2 class="title-main">
+						<span>
+							 Thông Báo  
+							 <span class="title_new">Mới</span>
+						</span>
+					</h2>
+					<div th:each="noti : ${listNoti}">
+					    <h5 th:text="${noti.title}">Title</h5>
+					    <p th:text="${noti.content}">Content</p>
+					    <p th:text="${noti.createDate}">Create Date</p>
+					    <p th:text="${noti.teacherName}">Teacher</p>
+					</div>
+				</div>
+				<!-- Kết thúc Thông Báo Mới -->
+			</div>
+		</div>
+		<!-- Kết thúc content -->
+	</div>
+	<!-- Kết thúc body -->
+	<!-- Bất đầu footer -->
+	<footer class="">
+		<div class="container d-flex footer">
+			<div class="container d-flex align-items-end justify-content-center p-4 pb-0 Footer_Icon">
+				<div class="mb-4">
+					<a href="#!" class="btn btn-floating m-1" style="background-color: #3b5998;" role="button"> <i
+							class="fa-brands fa-facebook"></i>
+					</a> <a href="#!" class="btn btn-floating m-1" style="background-color: #55acee;" role="button"> <i
+							class="fa-brands fa-twitter"></i>
+					</a> <a href="#!" class="btn btn-floating m-1" style="background-color: #0082ca;" role="button"> <i
+							class="fa-brands fa-linkedin"></i>
+					</a> <a href="#!" class="btn btn-floating m-1" style="background-color: #333333;" role="button"> <i
+							class="fa-brands fa-github"></i>
+					</a> <a href="#!" class="btn btn-floating m-1" style="background-color: #dd4b39;" role="button"> <i
+							class="fa-brands fa-google"></i>
+					</a> <a href="#!" class="btn btn-floating m-1" style="background-color: #ac2bac;" role="button"> <i
+							class="fa-brands fa-instagram"></i>
+					</a>
+				</div>
+			</div>
+			<!-- Bất đầu Phản Hồi -->
+			<div class="container Contact">
+				<h5 class="main-text">Góp Ý - Liên Hệ</h5>
+				<form action="/contact" method="POST">
+					<input type="text" class="form-control" name="name" placeholder="Name...">
+					<input type="email" class="form-control" name="email" placeholder="Email...">
+					<textarea class="form-control" rows="2" name="message" placeholder="........"></textarea>
+					<button type="submit" class="btn btn-primary float-end">Submit</button>
+				</form>
+				<!--<form action="" th:action="@{/contact}" th:object="${contact}" method="POST">
+					<input type="text" class="form-control" th:field="*{name}" placeholder="Name..."> <input
+						type="email" class="form-control" th:field="*{email}" placeholder="Email...">
+					<textarea class="form-control" rows="2" th:field="*{message}" placeholder="........"></textarea>
+					<button type="submit" class="btn btn-primary float-end">Submit</button>
+				</form>-->
+			</div>
+			<!-- Kết thúc Phản Hồi -->
+		</div>
+	</footer>
+	<!-- Bất đầu footer -->
+
+	<!-- JavaScript Bootstrap5 -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
