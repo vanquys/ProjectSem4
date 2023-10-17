@@ -198,7 +198,7 @@
         <!-- Bất đầu content -->
         <div class="col-11 App">
             <!-- Bất đầu danh sách Khóa Học -->
-            <div class="container-fluid table-responsive" id="Course">
+            <div class="container table-responsive" id="Course">
                 <table id="coursesTable " class="table table-striped">
                     <h2 class="title-main">
                         <span>
@@ -207,21 +207,19 @@
                       </h2>
                     <thead>
                         <tr>
-                            <th class="col-1" scope="col">ID</th>
-                            <th class="col-2" scope="col">Name</th>
-                            <th class="col-4" scope="col">Description</th>
-                            <th class="col-3" scope="col">Link Online</th>                          
-                            <th class="col-1" scope="col">Create Date</th>
-                            <th class="col-1" scope="col">Actions</th>
+                            <th class="col-md" scope="col">ID</th>
+                            <th class="col-md" scope="col">Name</th>
+                            <th class="col-md" scope="col">Description</th>
+                            <th class="col-md" scope="col">Link Online</th>                          
+                            <th class="col-md" scope="col">Actions</th>
                         </tr>
                     </thead>                    
                     <tbody>
-                        <!-- <tr th:each="course : ${courses}">
-                            <td><a th:href="@{/viewStudentsOfCourse/{id}(id=${course.id})}" th:text="${course.id}"></a>1</td>
-                            <td><a th:href="@{/viewStudentsOfCourse/{id}(id=${course.id})}" th:text="${course.name}">Course 1</a></td>
-                            <td><a th:href="@{/viewStudentsOfCourse/{id}(id=${course.id})}" th:text="${course.description}">	Description of Course 1</a></td>
-                            <td><a th:href="@{/viewStudentsOfCourse/{id}(id=${course.id})}" th:text="${course.link_online}">	http://course1.example.com</a></td>
-                            <td><a th:href="@{/viewStudentsOfCourse/{id}(id=${course.id})}" th:text="${course.create_date}">	21/08/2023</a></td>                            
+                         <tr th:each="course : ${listCourse}">
+                            <td th:text="${course.Id}"> </td>
+                            <td th:text="${course.Name}"></td>
+                            <td th:text="${course.Description}"></td>
+                            <td><a th:href="${course.LinkOnline}" th:text="${course.LinkOnline}"></a></td>
                             <td class="d-flex p-0">
                                 <button type="button" title="Thêm Thông Báo" class="btn btn-send-task btn_noti" data-bs-toggle="modal" data-bs-target="#addNotiModal">
                                     <i class="fa-solid fa-newspaper"></i>
@@ -233,97 +231,8 @@
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
                             </td>
-                        </tr> -->
-                        <tr>
-                          <td>2</td>
-                          <td>Course 2</td>
-                          <td>Description of Course 2</td>
-                          <td>http://course3.example.com</td>
-                          <td>21/08/2023</td>
-                          <td class="d-flex p-0">
-                            <button type="button" title="Thêm Thông Báo" class="btn btn-send-task btn_noti" data-bs-toggle="modal" data-bs-target="#addNotiModal">
-                                <i class="fa-solid fa-newspaper"></i>
-                            </button>                                
-                            <button type="button" title="Thêm Nhiệm Vụ" class="btn btn-send-task btn_task" data-bs-toggle="modal" data-bs-target="#addTaskModal">
-                                <i class="fa-solid fa-bars"></i>
-                            </button>                                
-                            <a title="Danh Sách Học Sinh" class="btn" href="/html/view-list-students.html">
-                                <i class="fa-solid fa-eye"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>3</td>
-                          <td>Course 3</td>
-                          <td>Description of Course 3</td>
-                          <td>http://course3.example.com</td>
-                          <td>21/08/2023</td>
-                          <td class="d-flex p-0">
-                            <button type="button" title="Thêm Thông Báo" class="btn btn-send-task btn_noti" data-bs-toggle="modal" data-bs-target="#addNotiModal">
-                                <i class="fa-solid fa-newspaper"></i>
-                            </button>                                
-                            <button type="button" title="Thêm Nhiệm Vụ" class="btn btn-send-task btn_task" data-bs-toggle="modal" data-bs-target="#addTaskModal">
-                                <i class="fa-solid fa-bars"></i>
-                            </button>                                
-                            <a title="Danh Sách Học Sinh" class="btn" href="/html/view-list-students.html">
-                                <i class="fa-solid fa-eye"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td>Course 4</td>
-                          <td>Description of Course 4</td>
-                          <td>http://course4.example.com</td>
-                          <td>21/08/2023</td>
-                          <td class="d-flex p-0">
-                            <button type="button" title="Thêm Thông Báo" class="btn btn-send-task btn_noti" data-bs-toggle="modal" data-bs-target="#addNotiModal">
-                                <i class="fa-solid fa-newspaper"></i>
-                            </button>                                
-                            <button type="button" title="Thêm Nhiệm Vụ" class="btn btn-send-task btn_task" data-bs-toggle="modal" data-bs-target="#addTaskModal">
-                                <i class="fa-solid fa-bars"></i>
-                            </button>                                
-                            <a title="Danh Sách Học Sinh" class="btn" href="/html/view-list-students.html">
-                                <i class="fa-solid fa-eye"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>5</td>
-                          <td>Course 5</td>
-                          <td>Description of Course 5</td>
-                          <td>http://course5.example.com</td>
-                          <td>21/08/2023</td>
-                          <td class="d-flex p-0">
-                            <button type="button" title="Thêm Thông Báo" class="btn btn-send-task btn_noti" data-bs-toggle="modal" data-bs-target="#addNotiModal">
-                                <i class="fa-solid fa-newspaper"></i>
-                            </button>                                
-                            <button type="button" title="Thêm Nhiệm Vụ" class="btn btn-send-task btn_task" data-bs-toggle="modal" data-bs-target="#addTaskModal">
-                                <i class="fa-solid fa-bars"></i>
-                            </button>                                
-                            <a title="Danh Sách Học Sinh" class="btn" href="/html/view-list-students.html">
-                                <i class="fa-solid fa-eye"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>6</td>
-                          <td>Course 6</td>
-                          <td>Description of Course 6</td>
-                          <td>http://course5.example.com</td>
-                          <td>21/08/2023</td>
-                          <td class="d-flex p-0">
-                            <button type="button" title="Thêm Thông Báo" class="btn btn-send-task btn_noti" data-bs-toggle="modal" data-bs-target="#addNotiModal">
-                                <i class="fa-solid fa-newspaper"></i>
-                            </button>                                
-                            <button type="button" title="Thêm Nhiệm Vụ" class="btn btn-send-task btn_task" data-bs-toggle="modal" data-bs-target="#addTaskModal">
-                                <i class="fa-solid fa-bars"></i>
-                            </button>                                
-                            <a title="Danh Sách Học Sinh" class="btn" href="/html/view-list-students.html">
-                                <i class="fa-solid fa-eye"></i>
-                            </a>
-                          </td>
-                        </tr>
+                        </tr> 
+                       
                     </tbody>
                 </table>
                 <nav class="float-end" aria-label="Page navigation example">
@@ -343,44 +252,7 @@
                     </li>
                   </ul>
                 </nav>
-                <!-- Kết thúc danh sách Khóa Học -->
-
-                <!-- <table id="studentsTable" class="table table-striped d-none">
-                    <h2 id="studentsTableTitle" class="title-main d-none">
-                        <span>
-                          Danh Sách Học Sinh
-                        </span>
-                    </h2>
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Password</th>
-                            <th scope="col">Full Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Phone</th>
-                            <th scope="col">Create Date</th>
-                            <th scope="col">Enable</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="row-cover">
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <i class="fa-solid fa-pen btn-edit" data-bs-toggle="modal" data-bs-target="#student-teacher-editModal"></i>
-                                <i class="fa-solid fa-trash btn-del" data-bs-toggle="modal" data-bs-target="#deleteModal"></i>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table> -->
-            </div>
-            <!-- Kết thúc danh sách Khóa Học -->
+             
 
             <!-- Bất đầu thêm Nhiện Vụ -->
             <div class="container-fluid table-responsive" id="Task">
@@ -389,69 +261,28 @@
                   <span>
                     Nhiệm Vụ
                   </span>
-                  <button type="button" title="Thêm Nhiệm Vụ" class="btn btn-send-task btn_task float-end" data-bs-toggle="modal" data-bs-target="#addTaskModal1">
-                    <i class="fa-solid fa-plus"></i>
-                  </button>
+                 
                 </h2>
                 <thead>
                     <tr>
-                        <th class="col-1" scope="col">ID</th>
-                        <th class="col-4" scope="col">Title</th>
-                        <th class="col-4" scope="col">Description</th>
-                        <th class="col-1" scope="col">Course ID</th>
-                        <th class="col-1" scope="col">Due Date</th>
-                        <th class="col-1" scope="col">Create Date</th>
+                        <th class="col-md" scope="col">ID</th>
+                        <th class="col-md" scope="col">Course</th>
+                        <th class="col-md" scope="col">Title</th>
+                        <th class="col-md" scope="col">Description </th>
+                        <th class="col-md" scope="col">Due Date</th>
+                        <th class="col-md" scope="col">Create Date</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr th:each="task : ${tasks}">
-                        <td th:id="${task.id}">1</td>
-                        <td th:text="${task.title}">Task 1</td>
-                        <td th:text="${task.description}">Description of Task 1</td>
-                        <td th:text="${task.courseId}">1</td>
-                        <td th:text="${task.dueDate}">31/08/2023</td>
-                        <td th:text="${task.createDate}">21/08/2023</td>
-                    </tr> -->
-                    <tr>
-                      <td>2</td>
-                      <td>Task 2</td>
-                      <td>Description of Task 2</td>
-                      <td>2</td>
-                      <td>31/08/2023</td>
-                      <td>21/08/2023</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Task 3</td>
-                      <td>Description of Task 3</td>
-                      <td>3</td>
-                      <td>31/08/2023</td>
-                      <td>21/08/2023</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>Task 4</td>
-                      <td>Description of Task 4</td>
-                      <td>4</td>
-                      <td>31/08/2023</td>
-                      <td>21/08/2023</td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>Task 5</td>
-                      <td>Description of Task 5</td>
-                      <td>5</td>
-                      <td>31/08/2023</td>
-                      <td>21/08/2023</td>
-                    </tr>
-                     <tr>
-                      <td>6</td>
-                      <td>Task 6</td>
-                      <td>Description of Task 6</td>
-                      <td>6</td>
-                      <td>31/08/2023</td>
-                      <td>21/08/2023</td>
-                    </tr>
+                     <tr th:each="task : ${listTask}">
+                        <td th:id="${task.Id}" th:text="${task.Id}"></td>
+                        <td th:text="${task.CourseName}"></td>
+                        <td th:text="${task.Title}"></td>
+                        <td th:text="${task.Description}"></td>
+                        <td th:text="${task.DueDate}"></td>
+                        <td th:text="${task.CreateDate}"></td>
+                    </tr> 
+                   
                 </tbody>
               </table>
               <nav class="float-end" aria-label="Page navigation example">
@@ -482,52 +313,23 @@
                   <span>
                     Thông Báo
                   </span>
-                  <button type="button" title="Thêm Nhiệm Vụ" class="btn btn-send-task btn_task float-end" data-bs-toggle="modal" data-bs-target="#addNotiModal1">
-                    <i class="fa-solid fa-plus"></i>
-                  </button>
+                
                 </h2>
                 <thead>
                     <tr>
-                        <th class="col-1" scope="col">ID</th>
-                        <th class="col-5" scope="col">Title</th>
-                        <th class="col-5" scope="col">Course Notification</th>
-                        <th class="col-1" scope="col">Create Date</th>
+                        <th class="col-md" scope="col">ID</th>
+                        <th class="col-md" scope="col">Title</th>
+                        <th class="col-md" scope="col">Course Notification</th>
+                        <th class="col-md" scope="col">Create Date</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr th:each="notification : ${notifications}">
-                        <td th:id="${notification.id}">1</td>
-                        <td th:text="${notification.title}">Notification 1</td>
-                        <td th:text="${notification.course_noti}">Content of Notification 1</td>
-                        <td th:text="${notification.createDate}">21/08/2023</td>
-                    </tr> -->
-                    <tr>
-                      <td>2</td>
-                      <td>Notification 2</td>
-                      <td>Content of Notification 2</td>
-                      <td>21/08/2023</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Notification 3</td>
-                      <td>Content of Notification 3</td>
-                      <td>21/08/2023</td>
-                    </tr><tr>
-                      <td>4</td>
-                      <td>Notification 4</td>
-                      <td>Content of Notification 4</td>
-                      <td>21/08/2023</td>
-                    </tr><tr>
-                      <td>5</td>
-                      <td>Notification 5</td>
-                      <td>Content of Notification 5</td>
-                      <td>21/08/2023</td>
-                    </tr><tr>
-                      <td>6</td>
-                      <td>Notification 6</td>
-                      <td>Content of Notification 6</td>
-                      <td>21/08/2023</td>
-                    </tr>
+                     <tr th:each="notification : ${listNoti}">
+                        <td th:id="${notification.Id}" th:text="${notification.Id}"></td>
+                        <td th:text="${notification.CourseName}"></td>
+                        <td th:text="${notification.Title}"></td>
+                        <td th:text="${notification.Content}"></td>
+                    </tr> 
                 </tbody>
               </table>
               <nav class="float-end" aria-label="Page navigation example">

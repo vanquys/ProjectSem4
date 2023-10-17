@@ -249,7 +249,7 @@
 			contentType : "application/json",
 			url : "/admin/students/editModel?id=" + id,
 			success : function(response) {
-				var student = response;
+					var student = response;
 				$('#editFullName').val(student.fullName);
 				$('#editEmail').val(student.email);
 				$('#editPhone').val(student.phone);
