@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.aptech.ProjectSem4.ViewModel.StudentCourseModel;
-import com.aptech.ProjectSem4.ViewModel.StudentTaskModel;
 import com.aptech.ProjectSem4.entities.Students;
 
 public interface StudentRepository extends CrudRepository<Students, Integer> {
