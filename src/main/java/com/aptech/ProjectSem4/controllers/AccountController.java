@@ -97,12 +97,12 @@ public class AccountController {
 		
 	}
 	
-	@RequestMapping("login")
+	@GetMapping("/login")
 	public String LoginView() {
 		return "login";
 	}
 	
-	@PostMapping("login")
+	@PostMapping("/login")
 	public String Login(LoginModel user , HttpSession session, Model model) {
 		
 		if(user.getRole().toString().equals("Admin") ) {
@@ -118,14 +118,18 @@ public class AccountController {
 		             model.addAttribute("errorMessage", errorMessage);
 		            return "login";
 		        }
-		}else if(user.getRole() == "Teacher") {
-			
+		}else if(user.getRole().equals("Teacher")) {
 			  Teachers loged = teacherRepository.findByPhoneOrEmail(user.getUserName(),user.getUserName() );
 			  if (loged != null && BCrypt.checkpw(user.getPassword(), loged.getPassword())) {
+				  if(!loged.isEnable()) {
+					  String errorMessage = "Tài khoản chưa được cấp phép !";
+			             model.addAttribute("errorMessage", errorMessage);
+			            return "login";
+				  }
 				  session.setAttribute("userName", user.getUserName());
 				  session.setAttribute("name", loged.getFullName()); 
 				  session.setAttribute("teacherId", loged.getId()); 
-		            return "view-teachers";
+		            return "redirect:/User/teachers/ViewTeachers";
 		        } else {
 		        	String errorMessage = "Tên người dùng hoặc mật khẩu không chính xác.";
 		             model.addAttribute("errorMessage", errorMessage);
@@ -134,6 +138,11 @@ public class AccountController {
 		}else {
 			Students loged = studentRepository.findByPhoneOrEmail(user.getUserName(), user.getUserName());
 			if (loged != null && BCrypt.checkpw(user.getPassword(), loged.getPassword())) {
+				 if(!loged.isEnable()) {
+					  String errorMessage = "Tài khoản chưa được cấp phép !";
+			             model.addAttribute("errorMessage", errorMessage);
+			            return "login";
+				  }
 				session.setAttribute("userName", user.getUserName());
 				session.setAttribute("name", loged.getFullName()); 
 				session.setAttribute("studentId", loged.getId()); 
@@ -145,8 +154,6 @@ public class AccountController {
 	            return "login";
 	        }
 		}
-		
-		
 	}
 	@GetMapping("logout")
 	public String Logout(HttpSession session) {
