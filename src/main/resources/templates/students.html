@@ -148,8 +148,7 @@
 											data-bs-target="#student-editModal" href="javascript:void(0);"
 											class="btn btn-primary"
 											th:onclick="|openEditModal('${students.id}')|">Edit</button></td>
-									<td><i class="fa-solid fa-trash btn-del"
-										data-bs-toggle="modal" data-bs-target="#deleteModal"></i></td>
+									<td><button class="btn btn-primary" href="javascript:void(0);" th:onclick="|deleteStudent('${students.id}')|">Edit</button></td>
 								</tr>
 
 							</tbody>
@@ -242,14 +241,14 @@
 	<!-- JavaScript Bootstrap5 -->
 
 </body>
-<script>
+<script th:inline="javascript">
 	function openEditModal(id) {
 		$.ajax({
 			type : "GET",
 			contentType : "application/json",
 			url : "/admin/students/editModel?id=" + id,
 			success : function(response) {
-					var student = response;
+				var student = response;
 				$('#editFullName').val(student.fullName);
 				$('#editEmail').val(student.email);
 				$('#editPhone').val(student.phone);
@@ -261,6 +260,24 @@
 			}
 		});
 	}
+	
+	
+	
+    function deleteStudent(studentId) {
+        $.ajax({
+            type: "POST",
+            url: "/admin/students/delete/" + studentId,
+            success: function (response) {
+                // Handle success, for example, remove the row from the table
+                $('#row-' + studentId).remove();
+                alert('Student deleted successfully.');
+            },
+            error: function () {
+                alert('Error occurred while deleting student.');
+            }
+        });
+    }
+	
 </script>
 
 
